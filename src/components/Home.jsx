@@ -8,12 +8,14 @@ const SOCIAL_LINKS = [
   { href: 'https://www.youtube.com/channel/UCyM6jYpH5CgvLDOHUL7vHng', icon: 'bxl-youtube', label: 'YouTube' },
 ];
 
+const BASE = import.meta.env.BASE_URL;
+
 function Home() {
   const typedElRef = useRef(null);
 
   useEffect(() => {
     const typed = new Typed(typedElRef.current, {
-      strings: ['Frontend Developer', 'UI/UX Enthusiast', 'YouTuber', 'CSE Student'],
+      strings: ['Software Developer', 'Web Developer', 'Frontend Developer'],
       typeSpeed: 80,
       backSpeed: 55,
       backDelay: 1600,
@@ -26,31 +28,33 @@ function Home() {
   return (
     <section className="home" id="home">
       <div className="home-content">
-        <p className="home-greeting">Hello, It's Me 👋</p>
+        <p className="home-greeting">Web Developer • Software Development • CSE Graduate</p>
         <h1>Wazid Hasan <span>Likhon</span></h1>
         <h3>I'm a <span className="multiple-text" ref={typedElRef}></span></h3>
         <p className="home-desc">
-          CSE student at Daffodil International University, passionate about building
-          beautiful and functional web experiences. Always eager to learn and grow in the tech world.
+          B.Sc. in Computer Science &amp; Engineering graduate from Daffodil International
+          University (Software Development track). I build clean, responsive and reliable
+          web applications, and I'm always learning to write better software.
         </p>
-          <div className="social-media">
+        <div className="home-buttons">
+          <a href="#portfolio" className="btn">
+            View My Projects <i className="bx bx-right-arrow-alt"></i>
+          </a>
+          <a href={`${BASE}download-cv.pdf`} className="btn btn-outline" download>
+            <i className="bx bx-download"></i> Download CV
+          </a>
+        </div>
+        <div className="social-media">
           {SOCIAL_LINKS.map((s) => (
             <a key={s.href} href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
               <i className={`bx ${s.icon}`}></i>
             </a>
           ))}
         </div>
-        <div className="home-buttons">
-          <a href="/download-cv.pdf" className="btn" download>
-            <i className="bx bx-download"></i> Download CV
-          </a>
-          <a href="#contact" className="btn btn-outline">Hire Me</a>
-        </div>
       </div>
-
       <div className="home-img">
         <div className="img-glow"></div>
-        <img src="/dev-5.png" alt="Wazid Hasan Likhon" loading="eager" />
+        <img src={`${BASE}dev-5.webp`} alt="Wazid Hasan Likhon" loading="eager" fetchPriority="high" />
       </div>
     </section>
   );

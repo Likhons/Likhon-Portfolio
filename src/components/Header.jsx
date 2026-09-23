@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 const NAV_LINKS = [
-  { href: '#home', label: 'Home', active: true },
+  { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
+  { href: '#education', label: 'Education' },
+  { href: '#journey', label: 'Journey' },
   { href: '#skills', label: 'Skills' },
   { href: '#services', label: 'Services' },
-  { href: '#portfolio', label: 'Portfolio' },
   { href: '#github', label: 'GitHub' },
+  { href: '#portfolio', label: 'Portfolio' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -17,6 +19,7 @@ function Header() {
   const [navOpen, setNavOpen] = useState(false);
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
   const [spin, setSpin] = useState(false);
+  const [activeId, setActiveId] = useState('home');
 
   const closeNavbar = () => setNavOpen(false);
 
@@ -76,8 +79,21 @@ function Header() {
   useEffect(() => {
     const header = headerRef.current;
     const sections = document.querySelectorAll('section');
-    const navLinks = header.querySelectorAll('nav a');
     let lastScrollY = 0;
+    let keepVisibleUntil = 0;
+
+    // Keep the header visible while an in-page link (#section) is smooth-scrolling
+    function handleAnchorClick(e) {
+      if (e.target.closest('a[href^="#"]')) keepVisibleUntil = Date.now() + 1500;
+    }
+
+    function updateActive() {
+      let current = 'home';
+      sections.forEach((sec) => {
+        if (window.scrollY >= sec.offsetTop - 250) current = sec.getAttribute('id');
+      });
+      setActiveId(current);
+    }
 
     function handleScroll() {
       const scrollY = window.scrollY;
@@ -85,7 +101,7 @@ function Header() {
       header.classList.toggle('sticky', scrollY > 80);
 
       if (scrollY > 300) {
-        if (scrollY > lastScrollY + 5 && !navOpen) {
+        if (scrollY > lastScrollY + 5 && !navOpen && Date.now() > keepVisibleUntil) {
           header.style.transform = 'translateY(-100%)';
         } else if (lastScrollY > scrollY + 5) {
           header.style.transform = 'translateY(0)';
@@ -95,16 +111,7 @@ function Header() {
       }
       lastScrollY = scrollY;
 
-      let current = '';
-      sections.forEach((sec) => {
-        if (scrollY >= sec.offsetTop - 250) {
-          current = sec.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-      });
+      updateActive();
 
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (scrollY / totalHeight) * 100;
@@ -112,8 +119,13 @@ function Header() {
       if (bar) bar.style.width = progress + '%';
     }
 
+    updateActive(); // correct highlight on load / refresh mid-page
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('click', handleAnchorClick);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleAnchorClick);
+    };
   }, [navOpen]);
 
   function handleThemeToggle() {
@@ -125,12 +137,13 @@ function Header() {
     <header className="header" id="header" ref={headerRef}>
       <a href="#" className="logo">W<span>.</span>Likhon</a>
 
-    <nav className={`navbar ${navOpen ? 'active' : ''}`} id="navbar" ref={navbarRef}>
+    <nav className={`navbar ${navOpen ? 'active' : ''}`} id="navbar" ref={navbarRef} aria-label="Main navigation">
   {NAV_LINKS.map((link) => (
     <a
       key={link.href}
       href={link.href}
-      className={link.active ? 'active' : ''}
+      className={activeId === link.href.slice(1) ? 'active' : ''}
+      aria-current={activeId === link.href.slice(1) ? 'true' : undefined}
       onClick={closeNavbar}
     >
       {link.label}
@@ -154,7 +167,15 @@ function Header() {
           aria-label="Toggle menu"
           role="button"
           tabIndex={0}
+          aria-expanded={navOpen}
+          aria-controls="navbar"
           onClick={() => setNavOpen((open) => !open)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setNavOpen((open) => !open);
+            }
+          }}
         >
           <i className={`bx ${navOpen ? 'bx-x' : 'bx-menu'}`}></i>
         </div>

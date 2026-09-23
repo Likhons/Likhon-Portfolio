@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
+import Education from './components/Education';
+import Journey from './components/Journey';
 import Skills from './components/Skills';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
@@ -20,7 +22,7 @@ function App() {
       setLoaderHidden(true);
       document.body.classList.add('loaded');
       setPageIn(true);
-    }, 1700);
+    }, 900);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,6 +32,7 @@ function App() {
       '.home-greeting, .home-content h1, .home-content h3, .home-desc, ' +
       '.home-buttons, .social-media, .home-img, ' +
       '.about-img, .about-content, ' +
+      '.education-card, .timeline-item, ' +
       '.skill-item, .tool-card, ' +
       '.services-box, ' +
       '.portfolio-box, ' +
@@ -48,7 +51,7 @@ function App() {
     });
 
     document.querySelectorAll(
-      '.services-container, .portfolio-container, .about-stats, .tools-grid'
+      '.services-container, .portfolio-container, .about-stats, .tools-grid, .education-container'
     ).forEach((container) => container.classList.add('reveal-stagger'));
 
     const revealObserver = new IntersectionObserver(
@@ -114,6 +117,8 @@ function App() {
       <Header />
       <Home />
       <About />
+      <Education />
+      <Journey />
       <Skills />
       <Services />
       <Github />

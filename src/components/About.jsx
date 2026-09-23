@@ -1,33 +1,39 @@
+const BASE = import.meta.env.BASE_URL;
+
 function About() {
   return (
     <section className="about" id="about">
       <div className="about-img">
-        <img src="/about.png" alt="About Wazid" loading="lazy" />
+        <img src={`${BASE}about.webp`} alt="Portrait of Wazid Hasan Likhon" loading="lazy" />
       </div>
       <div className="about-content">
         <h2 className="heading">About <span>Me</span></h2>
-        <h3>Frontend Developer & CSE Student</h3>
+        <h3>Software Developer &amp; CSE Graduate</h3>
         <p>
-          I'm a passionate frontend developer currently pursuing my B.Sc. in Computer Science
-          and Engineering at Daffodil International University. I specialize in crafting
-          clean, responsive, and user-friendly web interfaces.
+          I'm a software developer with a B.Sc. in Computer Science and Engineering from
+          Daffodil International University, where I focused on Software Development. I enjoy
+          building clean, responsive web applications and turning ideas into reliable,
+          user-friendly software.
         </p>
         <p>
-          I love turning ideas into reality through code. When I'm not coding,
-          you'll find me creating content on YouTube or exploring the latest tech trends.
+          I care about readable code, solid fundamentals and continuous learning. Outside of
+          coding, I create content and keep up with new technology.
         </p>
         <div className="about-stats">
           <div className="stat-box">
-            <h4>1+</h4>
-            <p>Years Experience</p>
+            <i className="bx bxs-graduation"></i>
+            <h4>B.Sc. in CSE</h4>
+            <p>Education</p>
           </div>
           <div className="stat-box">
-            <h4>10+</h4>
-            <p>Projects Done</p>
+            <i className="bx bx-buildings"></i>
+            <h4>Daffodil International University</h4>
+            <p>University</p>
           </div>
           <div className="stat-box">
-            <h4>5+</h4>
-            <p>Happy Clients</p>
+            <i className="bx bx-code-alt"></i>
+            <h4>Software Development</h4>
+            <p>Track</p>
           </div>
         </div>
         <a href="#contact" className="btn">Let's Talk</a>
