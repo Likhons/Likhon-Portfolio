@@ -36,8 +36,14 @@ function Contact() {
 
   return (
     <section className="contact" id="contact">
-      <h2 className="heading">Contact <span>Me</span></h2>
-      <p className="section-subtitle">Have a question or an opportunity? Get in touch.</p>
+      <p className="hero-status contact-badge">
+        <span className="hero-status-dot" aria-hidden="true"></span>
+        Open to Software Development opportunities
+      </p>
+      <h2 className="heading">Get In <span>Touch</span></h2>
+      <p className="section-subtitle">
+        Looking for a Software Development or Web Development role — feel free to reach out.
+      </p>
 
       <div className="contact-wrapper">
         <div className="contact-info">

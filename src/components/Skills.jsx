@@ -1,13 +1,18 @@
 const SKILL_GROUPS = [
   {
     icon: 'bx-code-alt',
-    title: 'Frontend Development',
+    title: 'Frontend',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Bootstrap', 'Responsive Design'],
   },
   {
+    icon: 'bx-terminal',
+    title: 'Programming',
+    tags: ['C', 'C++', 'Python', 'JavaScript'],
+  },
+  {
     icon: 'bx-server',
-    title: 'Programming & Backend',
-    tags: ['C', 'C++', 'Python', 'JavaScript', 'SQL', 'MySQL', 'REST API'],
+    title: 'Backend & Database',
+    tags: ['SQL', 'MySQL', 'REST API'],
   },
   {
     icon: 'bx-wrench',
@@ -16,20 +21,9 @@ const SKILL_GROUPS = [
   },
   {
     icon: 'bx-palette',
-    title: 'Design',
+    title: 'Design / UI-UX',
     tags: ['Figma', 'UI/UX Design', 'Graphic Design'],
   },
-];
-
-const TOOLS = [
-  { icon: 'bxl-html5', label: 'HTML5' },
-  { icon: 'bxl-css3', label: 'CSS3' },
-  { icon: 'bxl-javascript', label: 'JavaScript' },
-  { icon: 'bxl-react', label: 'React' },
-  { icon: 'bxl-git', label: 'Git' },
-  { icon: 'bxl-github', label: 'GitHub' },
-  { icon: 'bxl-figma', label: 'Figma' },
-  { icon: 'bx-code-curly', label: 'VS Code' },
 ];
 
 function Skills() {
@@ -39,34 +33,19 @@ function Skills() {
       <p className="section-subtitle">Technologies and tools I work with</p>
 
       <div className="skills-container">
-        <div className="skills-left">
-          <h3>Technical Skills</h3>
-          {SKILL_GROUPS.map((group) => (
-            <div className="skill-item" key={group.title}>
-              <div className="skill-title">
-                <i className={`bx ${group.icon}`}></i>
-                {group.title}
-              </div>
-              <ul className="skill-tags">
-                {group.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
+        {SKILL_GROUPS.map((group) => (
+          <div className="skill-item" key={group.title}>
+            <div className="skill-title">
+              <i className={`bx ${group.icon}`}></i>
+              {group.title}
             </div>
-          ))}
-        </div>
-
-        <div className="skills-right">
-          <h3>Tools &amp; Technologies</h3>
-          <div className="tools-grid">
-            {TOOLS.map((t) => (
-              <div className="tool-card" key={t.label}>
-                <i className={`bx ${t.icon}`}></i>
-                <span>{t.label}</span>
-              </div>
-            ))}
+            <ul className="skill-tags">
+              {group.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );

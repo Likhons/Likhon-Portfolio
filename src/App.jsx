@@ -11,7 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import CursorGlow from './components/CursorGlow';
-import Github from './components/Github';
+import Learning from './components/Learning';
 
 function App() {
   const [loaderHidden, setLoaderHidden] = useState(false);
@@ -29,13 +29,12 @@ function App() {
   // Scroll-reveal: fade sections/cards in as they enter the viewport
   useEffect(() => {
     const revealEls = document.querySelectorAll(
-      '.home-greeting, .home-content h1, .home-content h3, .home-desc, ' +
-      '.home-buttons, .social-media, .home-img, ' +
       '.about-img, .about-content, ' +
       '.education-card, .timeline-item, ' +
-      '.skill-item, .tool-card, ' +
+      '.skill-item, ' +
       '.services-box, ' +
       '.portfolio-box, ' +
+      '.learning-panel, ' +
       '.contact-info-item, .contact-form, ' +
       '.heading, .section-subtitle, ' +
       '.stat-box, .footer-content > *'
@@ -45,13 +44,13 @@ function App() {
       el.classList.add('reveal');
       if (el.closest('.about-img') || el.closest('.contact-info-item')) {
         el.classList.add('from-left');
-      } else if (el.closest('.home-img') || el.closest('.contact-form')) {
+      } else if (el.closest('.contact-form')) {
         el.classList.add('from-right');
       }
     });
 
     document.querySelectorAll(
-      '.services-container, .portfolio-container, .about-stats, .tools-grid, .education-container'
+      '.services-container, .portfolio-container, .about-stats, .education-container'
     ).forEach((container) => container.classList.add('reveal-stagger'));
 
     const revealObserver = new IntersectionObserver(
@@ -73,7 +72,7 @@ function App() {
 
   // Touch "press" feedback on cards
   useEffect(() => {
-    const cards = document.querySelectorAll('.services-box, .tool-card, .stat-box, .portfolio-box');
+    const cards = document.querySelectorAll('.services-box, .stat-box, .portfolio-box');
 
     function handleTouchStart(e) { e.currentTarget.style.transform = 'scale(0.97)'; }
     function handleTouchEnd(e) {
@@ -121,8 +120,8 @@ function App() {
       <Journey />
       <Skills />
       <Services />
-      <Github />
 <Portfolio />
+<Learning />
 <Contact />
       <Footer />
     </>

@@ -1,39 +1,42 @@
-const SERVICES = [
+// Reframed as capability, not paid service — no client/freelance claims.
+// Each "builds" item is a concrete example of the kind of thing the stack
+// supports, not a repeat of the Skills section's tag list.
+const CAPABILITIES = [
   {
-    icon: 'bx-code-alt',
-    title: 'Web Development',
-    text: 'Building responsive, modern and user-friendly websites and web interfaces.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'React'],
+    index: '01',
+    title: 'Web Applications',
+    text: 'Responsive, user-friendly interfaces and full web apps built with React and modern JavaScript.',
+    builds: ['Portfolio & landing pages', 'Multi-page React apps', 'Interactive UI components'],
   },
   {
-    icon: 'bx-laptop',
-    title: 'Software Development',
-    text: 'Developing practical software solutions and web applications using modern development practices.',
-    tags: ['C', 'C++', 'Python', 'JavaScript'],
+    index: '02',
+    title: 'Software Projects',
+    text: 'Practical software built through coursework and self-study, from console programs to small applications.',
+    builds: ['C / C++ programs', 'Python scripts & tools', 'Academic & practice projects'],
   },
   {
-    icon: 'bx-data',
-    title: 'Database & Backend',
-    text: 'Working with databases and backend technologies, including MySQL, SQL and REST APIs.',
-    tags: ['MySQL', 'SQL', 'REST API'],
+    index: '03',
+    title: 'Backend & Database Solutions',
+    text: 'Structured data and simple backend logic to support the applications above.',
+    builds: ['MySQL schema design', 'SQL queries & reporting', 'REST API integration'],
   },
 ];
 
 function Services() {
   return (
     <section className="services" id="services">
-      <h2 className="heading">My <span>Services</span></h2>
-      <p className="section-subtitle">What I can build and work on</p>
+      <h2 className="heading">What I Can <span>Build</span></h2>
+      <p className="section-subtitle">Where my current skills and projects fit</p>
 
       <div className="services-container">
-        {SERVICES.map((s) => (
-          <div className="services-box" key={s.title}>
-            <div className="services-icon"><i className={`bx ${s.icon}`}></i></div>
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-            <ul className="skill-tags">
-              {s.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
+        {CAPABILITIES.map((c) => (
+          <div className="services-box" key={c.title}>
+            <span className="services-index" aria-hidden="true">{c.index}</span>
+            <h3>{c.title}</h3>
+            <p>{c.text}</p>
+            <ul className="services-builds">
+              {c.builds.map((item) => (
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>

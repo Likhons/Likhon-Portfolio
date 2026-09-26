@@ -5,22 +5,24 @@ import { useState } from 'react';
 const projects = [
   {
     id: 1,
+    featured: true,
     icon: 'bx-code-curly',
     label: 'Software / Web',
     categories: ['software', 'web'],
     title: 'Bangla Compiler & Lexical Analyzer',
-    desc: 'A web-based compiler system that analyzes Bangla programming syntax, performs lexical analysis and parsing, generates an abstract syntax tree, converts the Bangla code into Python and executes the generated code.',
+    desc: 'A web-based compiler that performs lexical analysis and parsing on Bangla code, builds an abstract syntax tree, and translates it into executable Python.',
     tech: ['Python', 'Flask', 'MySQL', 'HTML', 'CSS', 'JavaScript'],
     github: '',
     demo: '',
   },
   {
     id: 2,
+    featured: true,
     icon: 'bx-buildings',
     label: 'Web / Software',
     categories: ['web', 'software'],
     title: 'University Central Internship & Company Communication Portal',
-    desc: 'A web-based platform designed to improve communication between university students, companies and coordinators during internship and recruitment activities. Built around Agile Scrum, role-based access, and student, company, coordinator and admin workflows.',
+    desc: 'A role-based web platform connecting students, companies and coordinators for internship and recruitment activities, built with Agile Scrum.',
     tech: ['Web Development', 'Database', 'HTML', 'CSS', 'JavaScript', 'MySQL'],
     github: '',
     demo: '',
@@ -31,7 +33,7 @@ const projects = [
     label: 'System / Linux',
     categories: ['system'],
     title: 'Linux User Management Automation Script',
-    desc: 'A Linux command-line user management system that automates user and group management operations with separate admin and user workflows. Features include user creation, deletion and modification, group management, password strength checking, SHA-256 password hashing and action logging.',
+    desc: 'A Linux CLI tool that automates user and group management with separate admin/user workflows, including password strength checks, SHA-256 hashing and action logging.',
     tech: ['Linux', 'Bash Shell Scripting', 'SHA-256'],
     github: '',
     demo: '',
@@ -98,7 +100,7 @@ function Portfolio() {
         {projects.map((p) => (
           <div
             key={p.id}
-            className={`portfolio-box ${filter !== 'all' && !p.categories.includes(filter) ? 'hidden' : ''}`}
+            className={`portfolio-box ${p.featured ? 'portfolio-box-featured' : ''} ${filter !== 'all' && !p.categories.includes(filter) ? 'hidden' : ''}`}
             data-category={p.categories.join(' ')}
           >
             <div className="portfolio-thumb">

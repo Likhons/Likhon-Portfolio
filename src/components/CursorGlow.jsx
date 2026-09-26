@@ -30,7 +30,7 @@ function CursorGlow() {
       cursor.style.opacity = '1';
     }
 
-    const targets = document.querySelectorAll('a, button, .btn, .tool-card, .portfolio-box, .filter-btn');
+    const targets = document.querySelectorAll('a, button, .btn, .portfolio-box, .filter-btn');
     document.addEventListener('mousemove', handleMouseMove);
     targets.forEach((el) => {
       el.addEventListener('mouseenter', handleEnter);
