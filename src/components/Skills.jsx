@@ -2,27 +2,22 @@ const SKILL_GROUPS = [
   {
     icon: 'bx-code-alt',
     title: 'Frontend',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Bootstrap', 'Responsive Design'],
-  },
-  {
-    icon: 'bx-terminal',
-    title: 'Programming',
-    tags: ['C', 'C++', 'Python', 'JavaScript'],
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Responsive Design'],
   },
   {
     icon: 'bx-server',
-    title: 'Backend & Database',
-    tags: ['SQL', 'MySQL', 'REST API'],
+    title: 'Backend',
+    tags: ['Node.js', 'Express.js', 'REST API', 'JWT Authentication'],
+  },
+  {
+    icon: 'bx-data',
+    title: 'Database',
+    tags: ['PostgreSQL', 'SQL'],
   },
   {
     icon: 'bx-wrench',
     title: 'Tools & Workflow',
-    tags: ['Git', 'GitHub', 'VS Code', 'Vite'],
-  },
-  {
-    icon: 'bx-palette',
-    title: 'Design / UI-UX',
-    tags: ['Figma', 'UI/UX Design', 'Graphic Design'],
+    tags: ['Git', 'GitHub', 'VS Code', 'Vite', 'Docker'],
   },
 ];
 
