@@ -1,6 +1,6 @@
 # Wazid Hasan Likhon — Portfolio
 
-Personal portfolio site, built with React + Vite. Migrated from a static HTML/CSS/JS site.
+Personal portfolio site, built with React + Vite.
 
 ## Getting started
 
